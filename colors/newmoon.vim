@@ -2,7 +2,7 @@
 " File: newmoon.vim
 " Description: port of newmoon by Tania Rascia (github.com/taniarascia)
 " Author: Timm Stelzer <timmstelzer@gmail.com>
-" Source: https://github.com/tstelzer/newmoon.vim
+" Source: https://github.com/tstelzer/new-moon.vim
 " ------------------------------------------------------------------------------
 
 set background=dark
