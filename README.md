@@ -3,7 +3,7 @@ port of [taniarascias](https://github.com/taniarascia) [new-moon](https://github
 
 **Note that it is**
 
-a) still a very early, potentially broken version and 
+still a very early, potentially broken version
 
-b) currently only for gui-vim
+~~currently only for gui-vim~~
 
