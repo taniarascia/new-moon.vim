@@ -76,7 +76,7 @@ endfun
 let s:black =     [ '#000000', 0   ]
 let s:blackish =  [ '#101010', 16  ]
 let s:grey1 =     [ '#2a2c2d', 16  ] " TODO, needs differenciation
-let s:grey2 =     [ '#3C3F41', 236  ]
+let s:grey2 =     [ '#303030', 236  ]
 let s:grey3 =     [ '#4F5254', 59  ] " TODO, needs differenciation
 let s:grey4 =     [ '#b3b3b3', 145 ]
 let s:grey5 =     [ '#c4c5c6', 188 ]
