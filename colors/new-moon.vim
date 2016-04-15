@@ -41,36 +41,36 @@ let colors_name = "new-moon"
 
 "     endfun
 " else
-    function! s:H(group,fg,bg,style)
+function! s:H(group,fg,bg,style)
 
-        if !empty(a:fg)
-            let l:gfg = a:fg[0]
-            let l:cfg = a:fg[1]
-        else
-            let l:gfg = "NONE"
-            let l:cfg = "NONE"
-        endif
+    if !empty(a:fg)
+        let l:gfg = a:fg[0]
+        let l:cfg = a:fg[1]
+    else
+        let l:gfg = "NONE"
+        let l:cfg = "NONE"
+    endif
 
-        if !empty(a:bg)
-            let l:gbg = a:bg[0]
-            let l:cbg = a:bg[1]
-        else
-            let l:gbg = "NONE"
-            let l:cbg = "NONE"
-        endif
+    if !empty(a:bg)
+        let l:gbg = a:bg[0]
+        let l:cbg = a:bg[1]
+    else
+        let l:gbg = "NONE"
+        let l:cbg = "NONE"
+    endif
 
-        if !empty(a:style)
-            " TODO check if style works in TERM
-            let l:gstyle = a:style
-            let l:cstyle = a:style
-        else
-            let l:gstyle = "NONE"
-            let l:cstyle = "NONE"
-        endif
+    if !empty(a:style)
+        " TODO check if style works in TERM
+        let l:gstyle = a:style
+        let l:cstyle = a:style
+    else
+        let l:gstyle = "NONE"
+        let l:cstyle = "NONE"
+    endif
 
-        exec "hi ".a:group." guifg=".l:gfg." ctermfg=".l:cfg." guibg=".l:gbg." ctermbg=".l:cbg." gui=".l:gstyle." term=".l:cstyle
+    exec "hi ".a:group." guifg=".l:gfg." ctermfg=".l:cfg." guibg=".l:gbg." ctermbg=".l:cbg." gui=".l:gstyle." term=".l:cstyle
 
-    endfun
+endfun
 " endif
 
 let s:black =     [ '#000000', 0   ]
