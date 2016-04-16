@@ -1,8 +1,8 @@
 " ------------------------------------------------------------------------------
-" File: newmoon.vim
-" Description: port of newmoon by Tania Rascia (github.com/taniarascia)
-" Author: Timm Stelzer <timmstelzer@gmail.com>
-" Source: https://github.com/tstelzer/new-moon.vim
+" File: new-moon.vim
+" Description: new-moon by Tania Rascia (github.com/taniarascia)
+" Author: Tania Rascia
+" Source: https://github.com/taniarascia/new-moon.vim
 " ------------------------------------------------------------------------------
 
 set background=dark
@@ -239,7 +239,7 @@ call s:H("TabLineSel",      s:fg0,            s:bg0,        "")
 call s:H("Title",           "",               "",           "")
 
 call s:H("VertSplit",       "",               "",           "")
-call s:H("Visual",          "",               s:bg1,        "")
+call s:H("Visual",          "",               s:bg0,        "")
 
 call s:H("WildMenu",        s:special,        "",           "")
 
