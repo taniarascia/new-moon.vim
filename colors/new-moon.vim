@@ -18,7 +18,7 @@ if !exists('g:nm_all_bold')
     let g:nm_all_bold = 0
 endif
 
-function! s:H(group,fg,bg,style)
+function! s:H(group,fg,bg,style) "{{{
 
     if !empty(a:fg)
         let l:gfg = a:fg[0]
@@ -53,17 +53,47 @@ function! s:H(group,fg,bg,style)
     exec "hi ".a:group." guifg=".l:gfg." ctermfg=".l:cfg." guibg=".l:gbg." ctermbg=".l:cbg." gui=".l:gstyle." term=".l:cstyle
 
 endfun
-" endif
+"}}}
 
-let s:black =     [ '#000000', 0   ]
-let s:blackish =  [ '#101010', 16  ]
-let s:grey1 =     [ '#2a2c2d', 16  ] " TODO, needs differenciation
-let s:grey2 =     [ '#303030', 236  ]
-let s:grey3 =     [ '#4F5254', 59  ] " TODO, needs differenciation
-let s:grey4 =     [ '#b3b3b3', 145 ]
-let s:grey5 =     [ '#c4c5c6', 188 ]
-let s:whiteish =  [ '#f7f7f7', 231 ] " TODO, term too close to white
-let s:white =     [ '#ffffff', 231 ]
+" ##############################################################################
+" ### #COLORPALETTE
+" ##############################################################################
+" DO NOT CHANGE THESE VALUES, ONLY ADD NEW ONES
+
+" --- Grayscale"{{{
+" ------------------------------------------------------------------------------
+
+let s:trueblack = [ '#000000', 16,  0,  0 ]
+let s:black     = [ '#080808', 232, 0,  0 ]
+let s:gray1     = [ '#121212', 233, 0,  0 ]
+let s:gray2     = [ '#1c1c1c', 234, 0,  0 ]
+let s:gray3     = [ '#262626', 235, 0,  0 ]
+let s:gray4     = [ '#303030', 236, 8,  0 ]
+let s:gray5     = [ '#3a3a3a', 237, 8,  0 ]
+let s:gray6     = [ '#444444', 238, 8,  0 ]
+let s:gray7     = [ '#4e4e4e', 239, 8,  0 ]
+let s:gray8     = [ '#606060', 241, 8,  0 ]
+let s:gray9     = [ '#666666', 242, 8,  0 ]
+let s:gray10    = [ '#767676', 243, 8,  0 ]
+let s:gray11    = [ '#808080', 244, 8,  0 ]
+let s:gray12    = [ '#8a8a8a', 245, 7,  7 ]
+let s:gray13    = [ '#949494', 245, 7,  7 ]
+let s:gray14    = [ '#9e9e9e', 246, 7,  7 ]
+let s:gray15    = [ '#9e9e9e', 247, 7,  7 ]
+let s:gray16    = [ '#a8a8a8', 248, 7,  7 ]
+let s:gray17    = [ '#b2b2b2', 249, 7,  7 ]
+let s:gray18    = [ '#bcbcbc', 250, 7,  7 ]
+let s:gray19    = [ '#c0c0c0', 7,   7,  7 ]
+let s:gray20    = [ '#c6c6c6', 251, 7,  7 ]
+let s:gray21    = [ '#d0d0d0', 252, 15, 7 ]
+let s:gray22    = [ '#dadada', 253, 15, 7 ]
+let s:gray23    = [ '#e4e4e4', 254, 15, 7 ]
+let s:white     = [ '#eeeeee', 255, 15, 7 ]
+let s:truewhite = [ '#FFFFFF', 15,  15, 7 ]
+"}}}
+" --- Palette {{{
+" ------------------------------------------------------------------------------
+let s:warmgray = [ '#5f5f5f', 59 ] " TODO temporary, maybe use a grayscale color
 let s:jade =      [ '#94C7B5', 115 ]
 let s:darkblue =  [ '#63A1C2', 73  ]
 let s:aqua =      [ '#8ADDF4', 117 ] " TODO, term too close to s:jade
@@ -76,32 +106,33 @@ let s:maize =     [ '#e3c485', 186 ]
 let s:palerose =  [ '#F4E1E1', 224 ]
 let s:salmon =    [ '#F57878', 210 ]
 let s:emerald =   [ '#49C698', 78  ]
+" }}}
 
-" ------------------------------------------------------------------------------
-" --- Background Tints TODO RENAME 
-" ------------------------------------------------------------------------------
-
-let s:bg0 = s:blackish " darkest color
-let s:bg1 = s:grey1
-let s:bg2 = s:grey2
-let s:bg3 = s:grey3 " medium tone
-" ------------------------------------------------------------------------------
-" --- Foreground Shades TODO RENAME
+" ##############################################################################
+" ### #FUNCTIONAL VARIABLES
+" ##############################################################################
+" --- change the assigned variables, if you want to change the presented colors
 " ------------------------------------------------------------------------------
 
-let s:fg2 = s:grey4
-let s:fg1 = s:grey5
-let s:fg0 = s:whiteish " lightest color
-
-" ------------------------------------------------------------------------------
-" --- Syntax groups
+" --- Custom "{{{
 " ------------------------------------------------------------------------------
 
+let s:foreground = s:white
+let s:background = s:gray4
+
+let s:positive = s:jade
+let s:neutral = s:aqua
+let s:negative = s:palerose
+"}}}
+" --- Defaults {{{
+" ------------------------------------------------------------------------------
 " VIM classifes MAJOR and MINOR syntax groups
 " by default, every MINOR inherits its MAJORS values
+" the variables are sorted and assigned in a way that reflects that
+" if you dont want to deal with this, delete the MINOR groups
 " see :help <group> for more information on the individual groups
 
-let s:comment = s:fg2
+let s:comment = s:gray17
 
 let s:constant = s:aqua
 let s:string = s:jade           " MINOR of Constant
@@ -127,7 +158,7 @@ let s:define = s:preproc         " MINOR of PreProc
 let s:macro = s:preproc          " MINOR of PreProc
 let s:precondit = s:preproc      " MINOR of PreProc
 
-let s:type = s:white
+let s:type = s:truewhite
 let s:storageclass = s:type      " MINOR of Type
 let s:structure = s:type         " MINOR of Type
 let s:typedef = s:type           " MINOR of Type
@@ -135,7 +166,7 @@ let s:typedef = s:type           " MINOR of Type
 let s:special = s:orangered
 let s:specialchar = s:salmon    " MINOR of Special
 let s:tag = s:special " MINOR of Special
-let s:delimiter = s:white      " MINOR of Special
+let s:delimiter = s:truewhite      " MINOR of Special
 let s:specialcomment = s:special " MINOR of Special
 let s:debug = s:special         " MINOR of Special
 
@@ -145,41 +176,32 @@ let s:ignore = s:orangered
 
 let s:error = s:salmon
 
-let s:todo = s:white
+let s:todo = s:truewhite
+" }}}
 
-" ------------------------------------------------------------------------------
-" --- Custom
-" ------------------------------------------------------------------------------
-
-let s:foreground = s:fg0
-let s:background = s:bg2
-
-let s:positive = s:jade
-let s:neutral = s:aqua
-let s:negative = s:palerose
-
-" let s:definition = s:lightblue
-" let s:meta = s:bg0
-" let s:metacolor = s:fg0
-" let s:id = s:lilac
-" let s:attribute = s:maize
-" let s:property = s:fg1
-" let s:qualifier = s:maize
-
-
-" ------------------------------------------------------------------------------
-" --- Vim Defaults
+" ##############################################################################
+" ### #SYNTAX
+" ##############################################################################
+" --- see function s:H()
+" --- s:h(<SyntaxGroup>!, <foreground>, <background>, <style>)
+" --- if fields are omitted, the parent syntaxgroups field will be inherited
+" --- for example omitting <background> in String, the <background>-field 
+" --- of Constant will be inherited
 " ------------------------------------------------------------------------------
 
+" --- Vim Defaults {{{
+" ------------------------------------------------------------------------------
+" TODO replace generic color vars with functional vars 
+"
 call s:H("Normal",          s:foreground,     s:background, "")
 
-call s:H("ColorColumn",     s:comment,        s:bg0,        "")
-call s:H("Conceal",         s:fg2,            "",           "")
+call s:H("ColorColumn",     s:comment,        s:gray3,        "")
+call s:H("Conceal",         s:gray17,            "",           "")
 call s:H("Cursor",          s:background,     s:foreground, "")
 call s:H("CursorColumn",    "",               "",           "")
 call s:H("CursorIM",        s:background,     s:foreground, "")
-call s:H("CursorLine",      "",               s:bg1,        "")
-call s:H("CursorLineNr",    "",               s:bg1,        "bold")
+call s:H("CursorLine",      "",               s:gray3,        "")
+call s:H("CursorLineNr",    "",               s:gray3,        "bold")
 
 call s:H("DiffAdd",         "",               s:positive,   "")
 call s:H("DiffChange",      "",               s:neutral,    "")
@@ -188,47 +210,45 @@ call s:H("Directory",       s:special,        "",           "")
 
 call s:H("ErrorMsg",        s:error,          s:negative,   "")
 
-call s:H("FoldColumn",      "",               s:bg3,        "")
-call s:H("Folded",          "",               s:bg3,        "")
+call s:H("FoldColumn",      "",               s:warmgray,        "")
+call s:H("Folded",          "",               s:warmgray,        "")
 
 call s:H("IncSearch",       s:background,     s:foreground, "")
 
 call s:H("LineNr",          s:comment,        "",           "")
 
 call s:H("MatchParen",      s:background,     s:foreground, "bold")
-call s:H("ModeMsg",         s:special,        s:bg1,        "bold")
-call s:H("MoreMsg",         s:special,        s:bg1,        "")
+call s:H("ModeMsg",         s:special,        s:gray3,        "bold")
+call s:H("MoreMsg",         s:special,        s:gray3,        "")
 
 call s:H("NonText",         s:operator,       "",           "")
 
 call s:H("Pmenu",           "",               "",           "")
 call s:H("PmenuSbar",       "",               "",           "")
-call s:H("PmenuSel",        s:special,        s:bg1,        "")
+call s:H("PmenuSel",        s:special,        s:gray3,        "")
 
-call s:H("Question",        s:special,        s:bg1,        "bold")
+call s:H("Question",        s:special,        s:gray3,        "bold")
 
 call s:H("Search",          s:background,     s:foreground, "")
 call s:H("SignColumn",      "",               "",           "")
 call s:H("SpecialKey",      s:special,        "",           "")
 call s:H("SpelBad",         s:error,          "",           "")
 call s:H("SpellRare",       s:neutral,        "",           "")
-call s:H("StatusLine",      s:white,          s:bg0,        "")
-call s:H("StatusLineNC",    s:fg0,            s:bg0,        "")
+call s:H("StatusLine",      s:truewhite,          s:gray3,        "")
+call s:H("StatusLineNC",    s:fg0,            s:gray3,        "")
 
-call s:H("TabLine",         "",               s:bg1,        "")
+call s:H("TabLine",         "",               s:gray3,        "")
 call s:H("TabLineFill",     "",               "",           "")
-call s:H("TabLineSel",      s:fg0,            s:bg0,        "")
+call s:H("TabLineSel",      s:fg0,            s:gray3,        "")
 call s:H("Title",           "",               "",           "")
 
 call s:H("VertSplit",       "",               "",           "")
-call s:H("Visual",          "",               s:bg0,        "")
+call s:H("Visual",          "",               s:gray3,        "")
 
 call s:H("WildMenu",        s:special,        "",           "")
-
+"}}}
+" --- Syntax {{{
 " ------------------------------------------------------------------------------
-" --- Syntax
-" ------------------------------------------------------------------------------
-
 call s:H("Comment",         s:comment,        "",           "")
 
 " --- MAJOR
@@ -286,9 +306,8 @@ call s:H("Ignore",          s:ignore,         "",           "")
 call s:H("Error",           s:error,          s:negative,   "")
 
 call s:H("Todo",            s:todo,           "",           "bold")
-
-" ------------------------------------------------------------------------------
-" --- Filetype specific Syntax
+"}}}
+" --- Filetype specific Syntax {{{
 " ------------------------------------------------------------------------------
 
 " Vimscript
@@ -304,5 +323,6 @@ call s:H("htmlTag",         s:statement,      "",           "")
 call s:H("htmlTagName",     s:statement,      "",           "")
 call s:H("htmlEndTag",      s:statement,      "",           "")
 call s:H("htmlArg",         s:special,        "",           "")
+" }}}
 
 delf s:H
