@@ -14,33 +14,10 @@ if exists("syntax_on")
 endif
 
 let colors_name = "new-moon"
+if !exists('g:nm_all_bold')
+    let g:nm_all_bold = 0
+endif
 
-" if has('gui_running')
-"     function! s:H(group,fg,bg,style)
-
-"         if !empty(a:fg)
-"             let l:gfg = a:fg[0]
-"         else
-"             let l:gfg = 'NONE'
-"         endif
-
-"         if !empty(a:bg)
-"             let l:gbg = a:bg[0]
-"         else
-"             let l:gbg = 'NONE'
-"         endif
-
-"         if !empty(a:style)
-"             ' TODO check if style works in TERM
-"             let l:gstyle = a:style
-"         else
-"             let l:gstyle = 'NONE'
-"         endif
-
-"         exec 'hi '.a:group.' guifg='.l:gfg.' guibg='.l:gbg.' gui='.l:gstyle
-
-"     endfun
-" else
 function! s:H(group,fg,bg,style)
 
     if !empty(a:fg)
@@ -59,13 +36,18 @@ function! s:H(group,fg,bg,style)
         let l:cbg = "NONE"
     endif
 
-    if !empty(a:style)
-        " TODO check if style works in TERM
-        let l:gstyle = a:style
-        let l:cstyle = a:style
+    if g:nm_all_bold == 1
+        let l:gstyle = "bold"
+        let l:cstyle = "bold"
     else
-        let l:gstyle = "NONE"
-        let l:cstyle = "NONE"
+        if !empty(a:style)
+            " TODO check if style works in TERM
+            let l:gstyle = a:style
+            let l:cstyle = a:style
+        else
+            let l:gstyle = "NONE"
+            let l:cstyle = "NONE"
+        endif
     endif
 
     exec "hi ".a:group." guifg=".l:gfg." ctermfg=".l:cfg." guibg=".l:gbg." ctermbg=".l:cbg." gui=".l:gstyle." term=".l:cstyle
