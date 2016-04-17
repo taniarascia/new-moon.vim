@@ -24,7 +24,7 @@ let colors_name = "new-moon"
 if !exists('g:nm_all_bold')
     let g:nm_all_bold = 0
 endif
-
+" TODO check for colorrange
 function! s:H(group,fg,bg,style) "{{{
 
     if !empty(a:fg)
@@ -100,6 +100,7 @@ let s:truewhite = [ '#FFFFFF', 15,  15, 7 ]
 "}}}
 " --- Palette {{{
 " ------------------------------------------------------------------------------
+"  TODO add 16 and 8 colors
 let s:warmgray = [ '#5f5f5f', 59 ] " TODO temporary, maybe use a grayscale color
 let s:jade =      [ '#94C7B5', 115 ]
 let s:darkblue =  [ '#63A1C2', 73  ]
