@@ -1,3 +1,10 @@
+" d8b   db d88888b db   d8b   db        .88b  d88.  .d88b.   .d88b.  d8b   db 
+" 888o  88 88'     88   I8I   88        88'YbdP`88 .8P  Y8. .8P  Y8. 888o  88 
+" 88V8o 88 88ooooo 88   I8I   88        88  88  88 88    88 88    88 88V8o 88 
+" 88 V8o88 88~~~~~ Y8   I8I   88 C8888D 88  88  88 88    88 88    88 88 V8o88 
+" 88  V888 88.     `8b d8'8b d8'        88  88  88 `8b  d8' `8b  d8' 88  V888 
+" VP   V8P Y88888P  `8b8' `8d8'         YP  YP  YP  `Y88P'   `Y88P'  VP   V8P 
+"
 " ------------------------------------------------------------------------------
 " File: new-moon.vim
 " Description: new-moon by Tania Rascia (github.com/taniarascia)
