@@ -27,10 +27,33 @@ endif
 if !exists('g:nm_use_italics')
     let g:nm_use_italics = 0
 endif
-" TODO check for colorrange
+
 function! s:H(group,fg,bg,style) "{{{
+" group = Syntax Group
+" :help syntax
+" fg = Foreground Color
+" bg = Background Color
+" style = Font Style
+
+if &t_Co == 8 && exists(a:fg[2]) && exists(a:bg[2])
+    " low color & does have term8 colors
+
+    let l:cbg = 0
+    " term8 background is rendered exclusively black
 
     if !empty(a:fg)
+        " foreground is NOT empty
+        let l:cfg = a:fg[2]
+    else 
+        "foreground IS empty
+        let l:cfg = "NONE"
+    endif
+    exec "hi ".a:group." ctermfg = ".l:cfg." ctermbg = ".l:cbg
+
+else
+
+    if !empty(a:fg)
+        " foreground is NOT empty
         let l:gfg = a:fg[0]
         let l:cfg = a:fg[1]
     else
@@ -39,29 +62,45 @@ function! s:H(group,fg,bg,style) "{{{
     endif
 
     if !empty(a:bg)
+        " background is NOT empty
         let l:gbg = a:bg[0]
         let l:cbg = a:bg[1]
     else
+        " background IS empty
         let l:gbg = "NONE"
         let l:cbg = "NONE"
     endif
 
     if g:nm_all_bold == 1
+        " all text is rendered bold
         let l:gstyle = "bold"
         let l:cstyle = "bold"
     else
         if !empty(a:style)
-            " TODO check if style works in TERM
-            let l:gstyle = a:style
-            let l:cstyle = a:style
+            if a:style == "italic" && g:nm_use_italics == 0
+                " no italics should be used
+                let l:gstyle = "NONE"
+                let l:cstyle = "NONE"
+            else
+                " style is NOT empty
+                let l:gstyle = a:style
+                let l:cstyle = a:style
+                " TODO check if style works in TERM
+            endif
         else
+            " style IS empty
             let l:gstyle = "NONE"
             let l:cstyle = "NONE"
         endif
     endif
 
+    " Schema:
+    " hi "<Syntax group>" guifg = "<fgcolor>" guibg = "<bgcolor>" 
+    " \ ctermfg = "<termfg>" ctermbg = "<termbg>" 
+    " \ gui = "<guistyle>" term = "<termstyle>"
+    
     exec "hi ".a:group." guifg=".l:gfg." ctermfg=".l:cfg." guibg=".l:gbg." ctermbg=".l:cbg." gui=".l:gstyle." term=".l:cstyle
-
+endif
 endfun
 "}}}
 
@@ -246,11 +285,11 @@ call s:H("SpecialKey",      s:special,        "",           "")
 call s:H("SpelBad",         s:error,          "",           "")
 call s:H("SpellRare",       s:neutral,        "",           "")
 call s:H("StatusLine",      s:truewhite,          s:gray3,        "")
-call s:H("StatusLineNC",    s:fg0,            s:gray3,        "")
+call s:H("StatusLineNC",    s:gray20,            s:gray3,        "")
 
 call s:H("TabLine",         "",               s:gray3,        "")
 call s:H("TabLineFill",     "",               "",           "")
-call s:H("TabLineSel",      s:fg0,            s:gray3,        "")
+call s:H("TabLineSel",      s:gray20,            s:gray3,        "")
 call s:H("Title",           "",               "",           "")
 
 call s:H("VertSplit",       "",               "",           "")
