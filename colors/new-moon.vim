@@ -24,6 +24,9 @@ let colors_name = "new-moon"
 if !exists('g:nm_all_bold')
     let g:nm_all_bold = 0
 endif
+if !exists('g:nm_use_italics')
+    let g:nm_use_italics = 0
+endif
 " TODO check for colorrange
 function! s:H(group,fg,bg,style) "{{{
 
