@@ -176,6 +176,7 @@ let s:negative = s:palerose
 "}}}
 " --- Defaults {{{
 " ------------------------------------------------------------------------------
+" TODO remove redundancy
 " VIM classifes MAJOR and MINOR syntax groups
 " by default, every MINOR inherits its MAJORS values
 " the variables are sorted and assigned in a way that reflects that
